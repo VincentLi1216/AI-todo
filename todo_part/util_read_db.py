@@ -21,6 +21,6 @@ def save_json(data, file_path):
         print(f"儲存資料時發生錯誤: {e}")
 
 
-save_json(data, "./todos.json")
+save_json(data, "todo_part/todos.json")
 
 # print(things.tags())
