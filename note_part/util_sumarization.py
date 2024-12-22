@@ -1,6 +1,6 @@
 import os
 from llm import OpenAILLM
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 
 llm = OpenAILLM()
 
@@ -34,18 +34,17 @@ class SummarizeResponse(BaseModel):
 llm.build(template=template, schema=SummarizeResponse)
 
 
-def summarize(root_path: str, file_path: str) -> str:
+def summarize(file_path: str) -> str:
     """
     Generate a concise summary based on the provided document content.
     
-    :param root_path: The root path of the note folder.
     :param file_path: The file path of the note file.
     :return: The summarized text.
     """
     content =  f"""
 # {file_path.split('/')[-1].replace('.md', '')}
 ---
-{open(os.path.join(root_path, file_path), 'r').read()}
+{open(file_path, 'r').read()}
 """
     response = llm.invoke({"document": content})
     
