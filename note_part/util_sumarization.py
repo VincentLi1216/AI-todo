@@ -33,7 +33,15 @@ class SummarizeResponse(BaseModel):
     
 llm.build(template=template, schema=SummarizeResponse)
 
+
 def summarize(root_path: str, file_path: str) -> str:
+    """
+    Generate a concise summary based on the provided document content.
+    
+    :param root_path: The root path of the note folder.
+    :param file_path: The file path of the note file.
+    :return: The summarized text.
+    """
     content =  f"""
 # {file_path.split('/')[-1].replace('.md', '')}
 ---
@@ -42,6 +50,7 @@ def summarize(root_path: str, file_path: str) -> str:
     response = llm.invoke({"document": content})
     
     return response.text
+
 
 if __name__ == "__main__":
     root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
