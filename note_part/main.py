@@ -72,6 +72,13 @@ def test_note_batch_summarize(root_path):
 
 
 def test_note_extract_todos(root_path, file_path):
+    """
+    Extract to-do items from a specific Markdown file and store them in the todo.json file.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :param file_path: The relative path of the Markdown file to extract to-do items from.
+    :return: A message indicating the completion of the extraction process.
+    """
     if 'todo.json' not in os.listdir(os.path.join(root_path, '.mindflow')):
         print("Creating the todo.json file...")
         todos = {'root': root_path, 'file': [], 'data': []}
