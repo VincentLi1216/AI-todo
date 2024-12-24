@@ -5,3 +5,5 @@ things.py==0.0.14
 
 # note
 langchain-openai==0.2.14
+transformers
+torch
