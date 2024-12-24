@@ -1,112 +1,21 @@
 {
   "root": "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote",
   "file": [
-    "Meeting/第一次行銷策略討論-會議記錄.md",
     "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
   ],
   "data": [
     {
-      "title": "社群媒體預告活動",
-      "task": "Prepare and release the first teaser video with the theme 'Your headphones will understand you' on social media to attract target audience attention. Marketing team to execute, with designer providing materials.",
-      "completion_time": "2025-02-15",
-      "priority": "medium",
-      "place": null,
-      "person": "Marketing team, Designer",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "倒計時活動",
-      "task": "Start daily countdown posts from February 20, 2025, and engage consumers in interactive lottery to win trial of limited experience machine. Project assistant to coordinate activity arrangements.",
-      "completion_time": "2025-02-20",
-      "priority": "medium",
-      "place": null,
-      "person": "Project Assistant",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Complete exterior model and product rendering for social media material",
-      "task": "Design department to provide full exterior model and product rendering by end of January 2025 for social media use.",
-      "completion_time": "2025-01-31",
-      "priority": "high",
-      "place": null,
-      "person": "Designer",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Shoot and edit product demo video",
-      "task": "Complete shooting and editing of product demo video by February 25, 2025, for core visual content of the launch event. R&D and marketing visual design teams to collaborate.",
-      "completion_time": "2025-02-25",
-      "priority": "high",
-      "place": null,
-      "person": "R&D, Marketing Visual Design Team",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Launch first wave of digital ads",
-      "task": "Begin digital advertising targeting the market (25-45-year-old tech enthusiasts and health-conscious individuals) on March 15, 2025.",
-      "completion_time": "2025-03-15",
-      "priority": "high",
-      "place": null,
-      "person": null,
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Start joint brand campaign with a well-known sports brand",
-      "task": "Collaborate with a renowned sports brand to release limited edition joint headphones by April 1, 2025. Marketing lead to negotiate with the brand, and analyst to assist in market analysis report.",
-      "completion_time": "2025-04-01",
-      "priority": "high",
-      "place": null,
-      "person": "Marketing Lead, Analyst",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Produce three emotional connection short films for consumer promotion",
-      "task": "Complete three different scenario short films showcasing headphone usage value in daily life, sports, and work settings by the end of March 2025.",
-      "completion_time": "2025-03-31",
-      "priority": "medium",
-      "place": null,
-      "person": null,
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Complete first internal testing round",
-      "task": "Conduct the first round of internal testing by early February 2025, gathering feedback from employees and internal partners.",
-      "completion_time": "2025-02-05",
-      "priority": "medium",
-      "place": null,
-      "person": null,
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Initiate small-scale market testing",
-      "task": "Start small-scale market testing by early March 2025, aiming to collect feedback from at least 300 users and make adjustments based on the responses.",
-      "completion_time": "2025-03-05",
-      "priority": "medium",
-      "place": null,
-      "person": null,
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "Submit testing report",
-      "task": "Submit the testing report by March 5, 2025.",
-      "completion_time": "2025-03-05",
-      "priority": "medium",
-      "place": null,
-      "person": "Project Assistant",
-      "source": "Meeting/第一次行銷策略討論-會議記錄.md"
-    },
-    {
-      "title": "完成基礎設計草圖第三次迭代",
-      "task": "完成基礎設計草圖的第三次迭代以模擬實際用戶體驗",
+      "title": "Complete third iteration of basic design sketches for SenseHear",
+      "task": "Complete the third iteration of the basic design sketches for the SenseHear product to simulate actual user experience.",
       "completion_time": "2024-12-31",
-      "priority": "medium",
-      "place": null,
+      "priority": "high",
+      "place": "Design Department",
       "person": "李設計師",
       "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     },
     {
-      "title": "完成焦點小組調查",
-      "task": "初步完成針對目標消費者的焦點小組調查，驗證功能需求的可行性與市場接受度",
+      "title": "Conduct focus group survey for SenseHear",
+      "task": "Conduct a focus group survey targeting potential consumers to verify the feasibility of functional requirements and market acceptance for SenseHear.",
       "completion_time": "2025-01-15",
       "priority": "medium",
       "place": null,
@@ -114,30 +23,57 @@
       "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     },
     {
-      "title": "完成首個原型機技術驗證版本",
-      "task": "完成首個原型機的技術驗證版本，包括感測器模組與降噪技術的整合",
+      "title": "Complete technical verification version of the first prototype",
+      "task": "Complete the technical verification version of the first prototype of SenseHear, focusing on integrating sensor modules and noise reduction technology while addressing computational delay issues.",
       "completion_time": "2025-02-10",
       "priority": "high",
-      "place": null,
+      "place": "R&D Center",
       "person": "張工程師",
       "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     },
     {
-      "title": "提供完整外觀模型設計",
-      "task": "提供完整的外觀模型設計以推動產品形象宣傳的第一波測試廣告",
+      "title": "Provide complete appearance model design",
+      "task": "Provide a complete appearance model design for the SenseHear product to facilitate the launch of the first test advertisement wave.",
       "completion_time": "2025-01-31",
       "priority": "medium",
-      "place": null,
-      "person": "設計團隊",
+      "place": "Design Department",
+      "person": "李設計師",
       "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     },
     {
-      "title": "完成專利申請與保密計畫",
-      "task": "完成情境音頻智能調整功能的專利申請，啟動相關的保密計畫",
-      "completion_time": "2025-03-01",
+      "title": "Launch first wave of promotional test advertisements",
+      "task": "Launch the first wave of promotional test advertisements for SenseHear, highlighting its brand strategy of 'Smart Listening, Healthy Living'.",
+      "completion_time": "2025-02-15",
+      "priority": "medium",
+      "place": "Marketing Department",
+      "person": "王行銷主管",
+      "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
+    },
+    {
+      "title": "File patent application for contextual audio smart adjustment",
+      "task": "Complete the patent application for the core feature of SenseHear - contextual audio smart adjustment - and initiate relevant confidentiality plans.",
+      "completion_time": "2025-03-05",
       "priority": "high",
-      "place": null,
-      "person": null,
+      "place": "Legal Department",
+      "person": "林經理, Legal Team",
+      "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
+    },
+    {
+      "title": "Prepare survey questions and coordinate with designers",
+      "task": "Prepare survey questions and coordinate with designers to ensure the completeness of user testing materials for the SenseHear focus group survey.",
+      "completion_time": "2024-12-31",
+      "priority": "medium",
+      "place": "Marketing Department, Design Department",
+      "person": "王行銷主管, 李設計師",
+      "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
+    },
+    {
+      "title": "Conduct bi-weekly progress review meetings",
+      "task": "Conduct bi-weekly progress review meetings to ensure that all tasks are advancing on schedule for the SenseHear project.",
+      "completion_time": "2024-12-31",
+      "priority": "low",
+      "place": "R&D Center",
+      "person": "林經理, 周專案助理",
       "source": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     }
   ]

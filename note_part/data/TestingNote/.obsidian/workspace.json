@@ -167,12 +167,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md",
+                "file": "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "第二次新型科技產品發想及進度追蹤-會議記錄"
+              "title": "Large Language Model based Multi-Agents- A Survey of Progress and Challenges"
             }
           }
         ],
@@ -317,8 +317,12 @@
       "command-palette:開啟命令面板": false
     }
   },
-  "active": "dc3e3e2250e7f8e7",
+  "active": "8235d9be82a6dacc",
   "lastOpenFiles": [
+    "paper/Long Term Memory - The Foundation of AI Self-Evolution.md",
+    "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md",
+    "paper/Docs/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.pdf",
+    "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md",
     "paper/Docs/ChatGPT.html",
     "paper/Docs/ChatGPT_files/unnamed.jpg",
     "paper/Docs/ChatGPT_files/sora-fe7ru8qd.webp",
@@ -332,15 +336,10 @@
     "paper/Docs/ChatGPT_files/WebPilot_Logo.jpg",
     "paper/Docs/ChatGPT_files",
     "Meeting/第一次行銷策略討論-會議記錄.md",
-    "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md",
     "paper/Docs/AutoNumerics-Zero.pdf",
-    "paper/Docs/Artificial intelligence for partial differential equations.pdf",
     "paper/Transfer Learning for Wildlife Classification - EvaluatingYOLOv8 against DenseNet, ResNet, and VGGNet on aCustom Dataset.md",
-    "Meeting",
     "paper/Novel Linear Algebraic Theory andOne-hundred-million-atom Electronic StructureCalculation on The K Computer.md",
     "paper/Massive Text Embedding Benchmark.md",
-    "paper/Long Term Memory - The Foundation of AI Self-Evolution.md",
-    "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md",
     "paper/Efficient Ranking, Order Statistics, and Sorting under CKKS.md",
     "paper/Brain-inspired AI Agent - The Way Towards AGI.md",
     "paper/AutoNumerics-Zero.md",
