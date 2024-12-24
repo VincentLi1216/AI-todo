@@ -2,7 +2,6 @@ import os
 import json
 from llm import OpenAILLM
 from pydantic import BaseModel, Field
-# hash funciton
 import hashlib
 
 def get_hash(input_string: str, algorithm: str = 'sha256') -> str:
