@@ -24,8 +24,8 @@ def verify_and_initialize(root_path):
 
 if __name__ == '__main__':
     root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
-    # file_path = "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     file_path = "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md"
+    # file_path = "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md"
     
     print(verify_and_initialize(root_path))
     
