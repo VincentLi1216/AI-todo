@@ -1,4 +1,5 @@
 import os
+import json
 from typing import List, Union, Literal
 from llm import OpenAILLM
 from pydantic import BaseModel, Field
@@ -62,6 +63,41 @@ def extract_todos(file_path: str) -> List[TodoItem]:
     response = llm.invoke({"document": content})
     
     return response.items
+
+
+def note_extract_todos(root_path, file_path):
+    """
+    Extract to-do items from a specific Markdown file and store them in the todo.json file.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :param file_path: The relative path of the Markdown file to extract to-do items from.
+    :return: A message indicating the completion of the extraction process.
+    """
+    if 'todo.json' not in os.listdir(os.path.join(root_path, '.mindflow')):
+        print("Creating the todo.json file...")
+        todos = {'root': root_path, 'file': [], 'data': []}
+        with open(os.path.join(root_path, '.mindflow', 'todo.json'), 'w') as f:
+            f.write(json.dumps(todos))
+    else:
+        with open(os.path.join(root_path, '.mindflow', 'todo.json'), 'r') as f:
+            todos = json.load(f)
+    
+    if file_path not in todos['file']:
+        todos['file'].append(file_path)
+    else:
+        return "To-do items for this file have already been extracted."
+    
+    results = extract_todos(os.path.join(root_path, file_path))
+    for todo in results:
+        todo = todo.__dict__
+        todo['source'] = file_path
+        todo['completion_time'] = todo['completion_time'].isoformat()
+        todos['data'].append(todo)
+        
+    with open(os.path.join(root_path, '.mindflow', 'todo.json'), 'w') as f:
+        f.write(json.dumps(todos))
+    
+    return "Process completed successfully."
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ load_dotenv()
 
 class OpenAILLM:
     def __init__(self):
-        self.model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-4o")
         self.strucutue_model = None
         self.chain = None
     

@@ -1,6 +1,14 @@
 import os
+import json
 from llm import OpenAILLM
 from pydantic import BaseModel, Field
+# hash funciton
+import hashlib
+
+def get_hash(input_string: str, algorithm: str = 'sha256') -> str:
+    hash_object = hashlib.new(algorithm)
+    hash_object.update(input_string.encode('utf-8'))
+    return hash_object.hexdigest()
 
 llm = OpenAILLM()
 
@@ -49,6 +57,55 @@ def summarize(file_path: str) -> str:
     response = llm.invoke({"document": content})
     
     return response.text
+
+
+def list_md_files(directory):
+    """
+    List all the Markdown files in the provided directory and its subdirectories.
+    
+    :param directory: The directory to search for Markdown files.
+    :return: A list of dictionaries containing the absolute and relative paths of the Markdown files.
+    """
+    md_files = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith('.md'):
+                md_files.append({
+                    "absolute_path": os.path.join(root, file),
+                    "relative_path": os.path.relpath(os.path.join(root, file), directory)
+                })
+    return md_files
+
+
+def batch_summarize(root_path):
+    """
+    Batch process all the Markdown files in the provided directory and generate summaries for each file.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :return: A message indicating the completion of the summarization process.
+    """
+    if 'summary.json' not in os.listdir(os.path.join(root_path, '.mindflow')):
+        print("Creating the summary.json file...")
+        summaries = {'root': root_path, 'data': {}}
+        with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'w') as f:
+            f.write(json.dumps(summaries))
+    else:
+        with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'r') as f:
+            summaries = json.load(f)
+    
+    md_files = list_md_files(root_path)
+    
+    for file_path in md_files:
+        text = summarize(file_path['absolute_path'])
+        summaries['data'][get_hash(file_path['relative_path'])] = {
+                'path': file_path['relative_path'],
+                'text': text
+            }
+        
+    with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'w') as f:
+        f.write(json.dumps(summaries))
+    
+    return "Process completed successfully."
 
 
 if __name__ == "__main__":
