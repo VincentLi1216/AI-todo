@@ -9,6 +9,8 @@ from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 import things
 import datetime
 
+import re, json
+
 class TodoChatAgent:
     def __init__(self):
         # Load environment variables
@@ -100,6 +102,7 @@ Begin!'''
             verbose=True,
             memory=self.memory,
             handle_parsing_errors=True,
+            return_intermediate_steps=True
         )
 
     def get_todos(self, *args, **kwargs):
@@ -117,10 +120,51 @@ Begin!'''
         response = self.agent_executor.invoke({"input": user_input})
         print("Bot:", response["output"])
 
+        intermediate_steps = response["intermediate_steps"]
+        used_tools = {}
+
+        for used_tool in intermediate_steps:
+
+
+            def str_to_json(str_data):
+                str_data = str_data.replace("'", '"').replace("None", "null")
+                try:
+                    actual_list = json.loads(str(str_data))
+                    print("轉換後的列表:", actual_list)
+                    print("類型:", type(actual_list))
+                    return actual_list
+                except json.JSONDecodeError as e:
+                    print("解析失敗:", e)
+
+            tool_str = str(used_tool[0])
+            # 定義正則表達式
+            pattern = r"tool='([^']+)'"
+
+            # 使用正則提取
+            match = re.search(pattern, tool_str)
+            if match:
+                matched_tool = match.group(1)
+                print("Extracted tool:", matched_tool)
+                if matched_tool == "Time":
+                
+                    tool_result = f'Time tool returns: {used_tool[1]}'
+                elif matched_tool == "all_todos":
+                    
+                    tool_result = f'all_todos tool returns {len(str_to_json(used_tool[1]))} todos'
+                elif matched_tool == "today_todos":
+                    tool_result = f'today_todos tool returns {len(str_to_json(used_tool[1]))} todos'
+                used_tools[matched_tool] = tool_result
+            else:
+                print("No match found.")
+            
+
+        print(response)
+        print(used_tools)
+
         # Add messages to memory
         self.memory.chat_memory.add_message(HumanMessage(content=user_input))
         self.memory.chat_memory.add_message(AIMessage(content=response["output"]))
-        return response["output"]
+        return response["output"], used_tools
     
     # clear memory function
     def clear_memory(self):

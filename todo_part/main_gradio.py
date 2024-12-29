@@ -2,6 +2,7 @@ import gradio as gr
 import random
 import time
 from chat_agent_class import TodoChatAgent
+from gradio import ChatMessage
 
 todo_agent = TodoChatAgent()
 
@@ -12,9 +13,16 @@ with gr.Blocks() as demo:
     clear = gr.ClearButton([msg, chatbot])
 
     def respond(message, chat_history):
-        respond = todo_agent.chat(message)
+        respond, used_tools = todo_agent.chat(message)
         chat_history.append({"role": "user", "content": message})
         respond = respond.replace("\n", "<br>")
+        if len(used_tools.keys())>0:
+            for tool_key in used_tools.keys():
+                chat_history.append(
+                    ChatMessage(role="assistant",
+                    content=f"{used_tools[tool_key]}",
+                    metadata={"title": f"🛠️ Used tool {tool_key}"})
+        )
         respond = f'<div style="width: 900px;"> {respond} </div>'
         chat_history.append({"role": "assistant", "content": gr.HTML(respond)})
         # foo_respond = "[google](https://www.google.com)\n[Things](things:///show?id=Nkuu5DQWS9d6VkMpt5AaAU)\n- one\n- two\n- three\n# this is the title"
