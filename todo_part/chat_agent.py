@@ -149,11 +149,9 @@ agent_executor = AgentExecutor.from_agent_and_tools(
 # memory.chat_memory.add_message(SystemMessage(content=initial_message))
 
 # Chat Loop to interact with the user
-while True:
-    user_input = input("User: ")
-    if user_input.lower() == "exit":
-        break
 
+
+def chat_with_agent(user_input):
 
     # Invoke the agent with the user input and the current chat history
     response = agent_executor.invoke({"input": user_input})
@@ -163,3 +161,14 @@ while True:
 
     # Add the agent's response to the conversation memory
     memory.chat_memory.add_message(AIMessage(content=response["output"]))
+
+
+
+if __name__ == "__main__":
+    while True:
+        user_input = input("User: ")
+        if user_input.lower() == "exit":
+            break
+
+
+        chat_with_agent(user_input)
