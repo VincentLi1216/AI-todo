@@ -18,11 +18,24 @@ with gr.Blocks() as demo:
         respond = respond.replace("\n", "<br>")
         if len(used_tools.keys())>0:
             for tool_key in used_tools.keys():
-                chat_history.append(
-                    ChatMessage(role="assistant",
-                    content=f"{used_tools[tool_key]}",
-                    metadata={"title": f"🛠️ Used tool {tool_key}"})
-        )
+                if tool_key == "Time":
+                    chat_history.append(
+                        ChatMessage(role="assistant",
+                        content=f"{used_tools[tool_key]}",
+                        metadata={"title": f'⏱️ Used tool "{tool_key}"'})
+                    )
+                elif tool_key == "all_todos":
+                    chat_history.append(
+                        ChatMessage(role="assistant",
+                        content=f"{used_tools[tool_key]}",
+                        metadata={"title": f'🤖 Used tool "{tool_key}"'})
+                    )
+                elif tool_key == "today_todos":
+                    chat_history.append(
+                        ChatMessage(role="assistant",
+                        content=f"{used_tools[tool_key]}",
+                        metadata={"title": f'🤖 Used tool "{tool_key}"'})
+                    )
         respond = f'<div style="width: 900px;"> {respond} </div>'
         chat_history.append({"role": "assistant", "content": gr.HTML(respond)})
         # foo_respond = "[google](https://www.google.com)\n[Things](things:///show?id=Nkuu5DQWS9d6VkMpt5AaAU)\n- one\n- two\n- three\n# this is the title"

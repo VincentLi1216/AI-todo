@@ -3,13 +3,23 @@ from langchain import hub
 from langchain.agents import AgentExecutor, create_structured_chat_agent
 from langchain.memory import ConversationBufferMemory
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langchain_core.tools import Tool
+from langchain_core.tools import Tool, StructuredTool
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 import things
+import ast
 import datetime
 
 import re, json
+
+from pydantic import BaseModel, Field
+
+class CreateTodoInput(BaseModel):
+    title: str = Field(title="The title of the todo item")
+    notes: str = Field(title="The notes for the todo item")
+    project_title: str = Field(title="The title of the project")
+
+
 
 class TodoChatAgent:
     def __init__(self):
@@ -32,6 +42,12 @@ class TodoChatAgent:
                 name="today_todos",
                 func=self.get_today_todos,
                 description="Useful for when you need to know today's todos.",
+            ),
+            StructuredTool(
+                name="create_todo",
+                func=self.create_todo,
+                description='''Useful for when you need to create a new todo item.''',
+                args_schema=CreateTodoInput
             )
         ]
 
@@ -114,6 +130,16 @@ Begin!'''
     def get_current_time(self, *args, **kwargs):
         now = datetime.datetime.now()
         return now.strftime("%I:%M %p")
+    
+
+    def create_todo(self, title: str, notes: str, project_title: str):
+        # 使用 Pydantic 模型進行驗證
+        print(f"Title: {title}")
+        print(f"Notes: {notes}")
+        print(f"Project Title: {project_title}")
+        # 在這裡添加處理邏輯，例如與 Things API 交互
+
+        return "todo item created"
 
     def chat(self, user_input):
         # Invoke the agent with the user input
@@ -125,7 +151,7 @@ Begin!'''
 
         for used_tool in intermediate_steps:
 
-
+            print(used_tool[0].__dict__["tool"])
             def str_to_json(str_data):
                 str_data = str_data.replace("'", '"').replace("None", "null")
                 try:
@@ -136,26 +162,20 @@ Begin!'''
                 except json.JSONDecodeError as e:
                     print("解析失敗:", e)
 
-            tool_str = str(used_tool[0])
-            # 定義正則表達式
-            pattern = r"tool='([^']+)'"
-
             # 使用正則提取
-            match = re.search(pattern, tool_str)
-            if match:
-                matched_tool = match.group(1)
-                print("Extracted tool:", matched_tool)
-                if matched_tool == "Time":
+            matched_tool = used_tool[0].__dict__["tool"]
+            print("Extracted tool:", matched_tool)
+            if matched_tool == "Time":
+            
+                tool_result = f'Returns: "{used_tool[1]}"'
+            elif matched_tool == "all_todos":
                 
-                    tool_result = f'Time tool returns: {used_tool[1]}'
-                elif matched_tool == "all_todos":
-                    
-                    tool_result = f'all_todos tool returns {len(str_to_json(used_tool[1]))} todos'
-                elif matched_tool == "today_todos":
-                    tool_result = f'today_todos tool returns {len(str_to_json(used_tool[1]))} todos'
-                used_tools[matched_tool] = tool_result
-            else:
-                print("No match found.")
+                tool_result = f'Returns "{len(ast.literal_eval(used_tool[1]))}" Todos Items'
+            elif matched_tool == "today_todos":
+                tool_result = f'Returns "{len(ast.literal_eval(used_tool[1]))}" Todos Items'
+            elif matched_tool == "create_todo":
+                tool_result = f'Created a new todo item: '
+            used_tools[matched_tool] = tool_result
             
 
         print(response)
