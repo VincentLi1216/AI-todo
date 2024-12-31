@@ -11,6 +11,7 @@ tags:
   - psychology simulation
   - multi-agent systems
 ---
+
 #### **1. Research Background**
 
 - **Capabilities of LLMs**: Exhibit human-like reasoning and planning abilities, enabling perception, decision-making, and action-taking.
