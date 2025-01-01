@@ -6,9 +6,31 @@ from gradio import ChatMessage
 
 todo_agent = TodoChatAgent()
 
-with gr.Blocks() as demo:
+welcome_messages = '''
+嗨！我是你的智能待辦事項助理，專為提升效率和簡化生活而設計！🎉
 
-    chatbot = gr.Chatbot(type="messages", height=900)
+以下是我可以幫助你的方式：
+1️⃣ 目標分解
+
+提供你的目標，我會自動將它分解為可執行的任務，幫助你更輕鬆地完成計劃。
+2️⃣ 待辦事項查詢
+
+隨時查詢你的待辦清單內容，包括未完成的任務、到期時間及優先級，讓你掌握所有細節。
+3️⃣ 自然語言互動
+
+用簡單的對話方式管理清單，例如新增、刪除或編輯任務，我會隨時為你處理！
+試試以下指令來開始吧：
+
+「我要計劃一場生日派對」
+「告訴我明天的待辦事項」
+「幫我新增一個重要的任務，明天上午提醒我！」
+
+準備好了嗎？輸入你的第一個需求，我們一起開始吧！ 🚀
+'''
+
+with gr.Blocks() as demo:
+    initial_message = [{"role": "assistant", "content": welcome_messages}]
+    chatbot = gr.Chatbot(value=initial_message, type="messages", height=900)
     msg = gr.Textbox()
     clear = gr.ClearButton([msg, chatbot])
 

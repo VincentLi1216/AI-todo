@@ -65,7 +65,7 @@ tools = [
 # https://smith.langchain.com/hub/hwchase17/structured-chat-agent
 prompt = ChatPromptTemplate.from_messages([
     ("system", '''
-    Respond to the human as helpfully and accurately as possible. You have access to the following tools:
+    You are an AI assistant for managing tasks. Respond to the human as helpfully and accurately as possible. Please respond to the user's questions in the language they used to ask. You have access to the following tools:
 
 {tools}
 
