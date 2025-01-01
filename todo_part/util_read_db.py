@@ -1,9 +1,9 @@
 import things
 import json
 
-data = things.todos()
-print(len(data))
-print(data[0])
+# data = things.todos()
+# print(len(data))
+# print(data[0])
 
 
 def save_json(data, file_path):
@@ -21,6 +21,42 @@ def save_json(data, file_path):
         print(f"儲存資料時發生錯誤: {e}")
 
 
-save_json(data, "todo_part/todos.json")
+def get_things_areas_names():
+    """
+    獲取 Things 中所有區域的名稱。
+    
+    :return: 一個包含所有區域名稱的列表。
+    """
+    
+    areas = things.areas()
 
-# print(things.tags())
+    area_names = [area['title'] for area in areas]
+
+    return area_names
+
+def get_things_projects_names():
+    """
+    獲取 Things 中所有區域的名稱。
+    
+    :return: 一個包含所有區域名稱的列表。
+    """
+    
+    projects = things.projects()
+
+    project_names = [project['title'] for project in projects]
+
+    return project_names
+
+
+if __name__ == "__main__":
+    pass
+    # print(things.todos())
+    # print(things.today())
+    # print(things.tags())
+    # print(things.lists())
+    print(things.areas())
+    print(things.projects())
+    print(get_things_areas_names())
+    print(get_things_projects_names())
+    # print(things.checklists())
+    # print(things.headings
