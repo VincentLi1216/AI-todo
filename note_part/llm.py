@@ -7,8 +7,9 @@ from langchain_core.prompts import PromptTemplate
 load_dotenv()
 
 class OpenAILLM:
-    def __init__(self):
-        self.model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-4o")
+    def __init__(self, model_name="gpt-4o"):
+        self.model_name = model_name
+        self.model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model=self.model_name)
         self.strucutue_model = None
         self.chain = None
     
