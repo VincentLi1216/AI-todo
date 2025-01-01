@@ -1,3 +1,16 @@
+---
+tags:
+  - computational overhead
+  - polynomial approximations
+  - machine learning encryption
+  - SIMD operations
+  - privacy-preserving applications
+  - homomorphic matrix encoding
+  - secure cloud computing
+  - logarithmic runtime scaling
+  - encrypted data processing
+  - CKKS Fully Homomorphic Encryption
+---
 #### **1. Introduction**
 
 - **Objective**: Address computational challenges in ranking, order statistics, and sorting on encrypted data using CKKS Fully Homomorphic Encryption (FHE).

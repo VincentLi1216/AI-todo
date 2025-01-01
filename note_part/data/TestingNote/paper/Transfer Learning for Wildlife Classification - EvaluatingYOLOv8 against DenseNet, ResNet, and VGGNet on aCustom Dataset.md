@@ -1,3 +1,16 @@
+---
+tags:
+  - image preprocessing
+  - scientific computing
+  - wildlife classification
+  - VGGNet
+  - transfer learning
+  - data augmentation
+  - deep learning
+  - YOLOv8
+  - ResNet
+  - DenseNet
+---
 #### **1. Introduction**
 
 - **Objective**: Evaluate and compare deep learning models (YOLOv8, DenseNet, ResNet, VGGNet) for classifying endangered wildlife species using a custom dataset.

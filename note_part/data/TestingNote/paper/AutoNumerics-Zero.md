@@ -1,3 +1,16 @@
+---
+tags:
+  - symbolic regression
+  - transcendental functions
+  - floating-point arithmetic
+  - scientific computing
+  - numerical optimization
+  - high precision computing
+  - symbolic spaces
+  - algorithm discovery
+  - compiler optimization
+  - evolutionary algorithm
+---
 #### **1. Introduction**
 
 - **Objective**: Leverage an evolutionary algorithm, AutoNumerics-Zero, to automatically discover optimized programs for computing transcendental functions with high precision and efficiency.

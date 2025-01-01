@@ -1,3 +1,16 @@
+---
+tags:
+  - irrationality proofs
+  - continued fractions
+  - public collaboration
+  - distributed computing
+  - conservative matrix fields
+  - algorithmic discovery
+  - computational algorithms
+  - experimental mathematics
+  - mathematical constants
+  - mathematical structures
+---
 #### **1. Introduction**
 
 - **Research Goal**: Harness computational algorithms to uncover relationships among mathematical constants and discover novel mathematical structures.

@@ -1,18 +1,1 @@
-{
-  "root": "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote",
-  "file": [
-    "paper/Artificial intelligence for partial differential equations.md",
-    "paper/Brain-inspired AI Agent - The Way Towards AGI.md",
-    "paper/Efficient Ranking, Order Statistics, and Sorting under CKKS.md",
-    "paper/AutoNumerics-Zero.md",
-    "paper/Algorithm-assisted discovery of an intrinsic order among mathematical constants.md",
-    "paper/Novel Linear Algebraic Theory andOne-hundred-million-atom Electronic StructureCalculation on The K Computer.md",
-    "paper/Transfer Learning for Wildlife Classification - EvaluatingYOLOv8 against DenseNet, ResNet, and VGGNet on aCustom Dataset.md",
-    "paper/Long Term Memory - The Foundation of AI Self-Evolution.md",
-    "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md",
-    "paper/Massive Text Embedding Benchmark.md",
-    "Meeting/第一次行銷策略討論-會議記錄.md",
-    "Meeting/第二次新型科技產品發想及進度追蹤-會議記錄.md",
-    "paper/test.md"
-  ]
-}
+{"root": "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote", "file": ["paper/Artificial intelligence for partial differential equations.md", "paper/Brain-inspired AI Agent - The Way Towards AGI.md", "paper/Efficient Ranking, Order Statistics, and Sorting under CKKS.md", "paper/AutoNumerics-Zero.md", "paper/Algorithm-assisted discovery of an intrinsic order among mathematical constants.md", "paper/Novel Linear Algebraic Theory andOne-hundred-million-atom Electronic StructureCalculation on The K Computer.md", "paper/Transfer Learning for Wildlife Classification - EvaluatingYOLOv8 against DenseNet, ResNet, and VGGNet on aCustom Dataset.md", "paper/Long Term Memory - The Foundation of AI Self-Evolution.md", "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md", "paper/Massive Text Embedding Benchmark.md", "Meeting/\u7b2c\u4e00\u6b21\u884c\u92b7\u7b56\u7565\u8a0e\u8ad6-\u6703\u8b70\u8a18\u9304.md", "Meeting/\u7b2c\u4e8c\u6b21\u65b0\u578b\u79d1\u6280\u7522\u54c1\u767c\u60f3\u53ca\u9032\u5ea6\u8ffd\u8e64-\u6703\u8b70\u8a18\u9304.md", "paper/test.md"]}
