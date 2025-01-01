@@ -68,6 +68,11 @@ with gr.Blocks() as demo:
                         ChatMessage(role="assistant",
                         content=f"{used_tools[tool_key]}",
                         metadata={"title": f'🎯 Used tool "{tool_key}"'}))
+                elif tool_key == "create_project_from_meeting":
+                    chat_history.append(
+                        ChatMessage(role="assistant",
+                        content=f"{used_tools[tool_key]}",
+                        metadata={"title": f'🎯 Used tool "{tool_key}"'}))
         respond = f'<div style="width: 900px;"> {respond} </div>'
         chat_history.append({"role": "assistant", "content": gr.HTML(respond)})
         # foo_respond = "[google](https://www.google.com)\n[Things](things:///show?id=Nkuu5DQWS9d6VkMpt5AaAU)\n- one\n- two\n- three\n# this is the title"

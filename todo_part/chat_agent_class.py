@@ -77,6 +77,12 @@ class TodoChatAgent:
                 description="""Useful for when you need to create a new project. """,
                 args_schema=CreateProjectInput,
             ),
+            StructuredTool(
+                name="create_project_from_meeting",
+                func=self.create_project_from_meeting,
+                description="""Useful for when you need to create a new project from a meeting record. """,
+                args_schema=EmptyInput,
+            )
         ]
 
         # Load the chat prompt template
@@ -171,7 +177,7 @@ Begin!""",
         return now.strftime("%I:%M %p")
 
     def create_todo(
-        self, title: str, notes: str, project_title: str, show_quick_entry: bool = True, sleep_time: float = 3
+        self, title: str, notes: str, project_title: str, show_quick_entry: bool = True, sleep_time: float = 3, reveal: bool = False
     ):
         # 使用 Pydantic 模型進行驗證
         print(f"Title: {title}")
@@ -188,6 +194,7 @@ Begin!""",
             list_name=project_title,
             show_quick_entry=show_quick_entry,
             tags="🛸AI",
+            reveal=reveal
         )
         time.sleep(sleep_time)
         return f"""New Todo Item Created: "{title}", if you receive this message, the todo item has been created successfully. Please don't call it again with the same title."""
@@ -212,11 +219,27 @@ Begin!""",
             todos = todos.split(",")
             for todo in todos:
                 self.create_todo(
-                    title=todo, project_title=title, notes="", show_quick_entry=False, sleep_time=1.5
+                    title=todo, project_title=title, notes="", show_quick_entry=False, sleep_time=1.5, reveal=True
                 )
             
         time.sleep(3)
         return f'New Project Created: "{title}"'
+    
+    def create_project_from_meeting(self, *args, **kwargs):
+        project_title = "第一次行銷策略討論-會議記錄"
+
+        self.create_project(title=project_title, notes="在 2024 年 12 月 22 日的會議中，討論了新型科技產品 \"智感耳機 SenseHear\" 的開發進度。SenseHear 結合 AI 及多功能感測技術，旨在提供智慧音頻體驗。會議回顧了上次的進展，包括市場調研初稿和競品分析初步結果。設計師提出了交互設計模型，計劃在年底前完成第三次迭代草圖。技術上，已整合感測模組與降噪技術，目標在 2025 年 2 月 10 日完成原型機技術驗證。行銷策略聚焦健康生活，品牌形象將於 2025 年 2 月中推出首波宣傳。下一步包括完成原型設計、焦點小組調查及專利申請。團隊確認每兩周檢討進度，以確保 SenseHear 的如期推出和成功。")
+
+        # open json to dict
+        with open("note_part/todo_item_list.template.json", "r") as f:
+            meeting_todo_list = json.load(f)
+
+        for todo in meeting_todo_list:
+            self.create_todo(
+                title=todo["title"], project_title=project_title, notes=todo["task"], show_quick_entry=False, sleep_time=1, reveal=True
+            )
+
+        return f"""New Project Created: "{project_title}" and todos created from the meeting record"""
 
     def chat(self, user_input):
         # Invoke the agent with the user input
@@ -247,6 +270,8 @@ Begin!""",
                 tool_result = f"{used_tool[1]}"
             elif matched_tool == "create_project":
                 tool_result = f"{used_tool[1]}"
+            elif matched_tool == "create_project_from_meeting":
+                tool_result = f"{used_tool[1]}"
             used_tools[matched_tool] = tool_result
 
         print(response)
@@ -269,3 +294,6 @@ if __name__ == "__main__":
         if user_input.lower() == "exit":
             break
         agent.chat(user_input)
+
+
+    
