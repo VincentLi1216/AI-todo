@@ -48,11 +48,11 @@ class RelativeTag(BaseModel):
 llm.build(template=template, schema=RelativeTag)
 
 def tag_template_matching(text: str, remove: bool = False) -> tuple[bool, str]:
-    pattern = r'^---\ntags:\n.*\n---'
+    pattern = r'(?s)^---\ntags:\n.*?\n---'
 
     if re.match(pattern, text, re.DOTALL):
         if remove:
-            updated_text = re.sub(pattern, '', text, flags=re.DOTALL)
+            updated_text = re.sub(pattern, '', text, count=1, flags=re.DOTALL)
             return True, updated_text.strip()
         return True, text
     else:

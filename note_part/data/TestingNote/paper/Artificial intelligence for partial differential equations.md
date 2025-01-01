@@ -1,14 +1,14 @@
 ---
 tags:
-  - Physics-Informed Neural Networks
-  - Computational Mechanics
+  - AI integration
   - Operator Learning
   - Solid Mechanics
-  - AI integration
+  - Computational Mechanics
   - Fluid Mechanics
   - Physics-Informed Neural Operators
-  - Biomechanics
-  - Advantages of AI
+  - Biomechanics Applications
+  - AI for PDEs
+  - Physics-Informed Neural Networks
   - Deep Energy Methods
 ---
 #### **1. Introduction**
