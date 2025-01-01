@@ -6,9 +6,9 @@ from llm import OpenAILLM
 from pydantic import BaseModel, Field
 import hashlib
 
-from common import list_md_files
+from common import list_md_files, get_hash
 
-llm = OpenAILLM()
+llm = OpenAILLM("gpt-4o-mini")
 
 hypothesis_template = "This text is about {}"
 zeroshot_classifier = pipeline("zero-shot-classification", model="MoritzLaurer/deberta-v3-large-zeroshot-v2.0")  # change the model identifier here
@@ -57,11 +57,6 @@ def tag_template_matching(text: str, remove: bool = False) -> tuple[bool, str]:
         return True, text
     else:
         return False, text
-
-def get_hash(input_string: str, algorithm: str = 'sha256') -> str:
-    hash_object = hashlib.new(algorithm)
-    hash_object.update(input_string.encode('utf-8'))
-    return hash_object.hexdigest()
 
 
 def classify_text(text: str, classes: list) -> dict:
@@ -164,6 +159,7 @@ def batch_tag(root_path):
         
     return "Batch tagging process completed successfully."
 
+
 def get_file_name_by_tag(root_path, description):
     """
     Get the list of files that are tagged with the specified tag.
@@ -191,6 +187,7 @@ def get_file_name_by_tag(root_path, description):
             result.extend(tag_to_files[tag])
     
     return list(set(result))
+
 
 if __name__ == "__main__":
     root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
