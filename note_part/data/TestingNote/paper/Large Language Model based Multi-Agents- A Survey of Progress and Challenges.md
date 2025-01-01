@@ -1,15 +1,15 @@
 ---
 tags:
-  - agent profiling
-  - societal simulation
-  - LLM capabilities
   - collective intelligence
+  - multi-modal environments
+  - LLM capabilities
+  - societal simulation
   - agent communication
-  - capability acquisition
-  - environment simulation
-  - software development
-  - psychology simulation
   - multi-agent systems
+  - problem solving
+  - scalability challenges
+  - capability enhancement
+  - environment simulation
 ---
 #### **1. Research Background**
 

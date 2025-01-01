@@ -1,3 +1,16 @@
+---
+tags:
+  - future directions
+  - benchmark tasks
+  - retrieval tasks
+  - embedding models
+  - multilingual models
+  - open-source leaderboard
+  - classification tasks
+  - model performance
+  - text embedding evaluation
+  - semantic textual similarity
+---
 #### **1. Overview**
 
 - **Purpose**: Address gaps in text embedding evaluation by providing a diverse and comprehensive benchmark across tasks, datasets, and languages.

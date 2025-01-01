@@ -1,3 +1,16 @@
+---
+tags:
+  - Brain-Inspired AI
+  - Cortical Functions
+  - Neuroscience Insights
+  - Perception-Planning-Action
+  - Cognitive Control
+  - Human Connectome Project
+  - Functional Connectivity
+  - Neural Pathways
+  - Artificial General Intelligence
+  - Modular AI Architecture
+---
 #### **1. Introduction**
 
 - **Objective**: Develop brain-inspired AI agents to bridge the gap between current AI and Artificial General Intelligence (AGI).

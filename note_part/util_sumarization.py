@@ -76,6 +76,30 @@ def list_md_files(directory):
     return md_files
 
 
+def summarize_file(root_path, file_path):
+    """
+    Generate a concise summary based on the provided document content.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :param file_path: The relative path of the Markdown file to summarize.
+    :return: The summarized text.
+    """
+    summary = summarize(os.path.join(root_path, file_path))
+    
+    with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'r') as f:
+        summaries = json.load(f)
+        
+    summaries['data'][get_hash(file_path)] = {
+        'path': file_path,
+        'text': summary
+    }
+    
+    with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'w') as f:
+        f.write(json.dumps(summaries))
+
+    return summary
+
+
 def batch_summarize(root_path):
     """
     Batch process all the Markdown files in the provided directory and generate summaries for each file.

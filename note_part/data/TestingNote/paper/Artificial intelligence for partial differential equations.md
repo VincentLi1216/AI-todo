@@ -1,3 +1,16 @@
+---
+tags:
+  - Physics-Informed Neural Networks
+  - Computational Mechanics
+  - Operator Learning
+  - Solid Mechanics
+  - AI integration
+  - Fluid Mechanics
+  - Physics-Informed Neural Operators
+  - Biomechanics
+  - Advantages of AI
+  - Deep Energy Methods
+---
 #### **1. Introduction**
 
 - **Objective**: The review focuses on the integration of artificial intelligence (AI) with partial differential equations (PDEs) to address computational mechanics problems in solid, fluid, and biomechanics.
