@@ -40,7 +40,7 @@ Provide the to-do items in a clear, consistent list format, where each item cont
 class TodoItem(BaseModel):
     title: str = Field(description="The title or name of the task.")
     task: str = Field(description="The detailed description of the task.")
-    completion_time: date = Field(description="The expected completion time for the task.")
+    completion_time: str = Field(description="The expected completion time for the task. Use the format 'YYYY-MM-DD'.")
     priority: Literal["high", "medium", "low"] = Field(description="The priority level of the task.")
     place: Union[str, None] = Field(description="The location or place associated with the task.")
     person: Union[str, None] = Field(description="The responsible person for the task. Seperate multiple persons with ', '")
@@ -105,5 +105,9 @@ if __name__ == "__main__":
     file_path = "Meeting/第一次行銷策略討論-會議記錄.md"
     
     todos = extract_todos(os.path.join(root_path, file_path))
+    results = []
     for todo in todos:
-        print(todo.__dict__)
+        results.append(todo.__dict__)
+    
+    with open('./todo_item_list.template.json', 'w') as f:
+        f.write(json.dumps(results))

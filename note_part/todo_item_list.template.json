@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Social Media Teaser",
+    "task": "Release the first teaser video with the theme 'Your headphones will understand you' to attract target audience attention.",
+    "completion_time": "2025-02-15",
+    "priority": "high",
+    "place": null,
+    "person": "Marketing team, Li (Designer)"
+  },
+  {
+    "title": "Countdown Activity",
+    "task": "Start daily countdown posts and invite consumer participation in interactive giveaways to win limited trial devices.",
+    "completion_time": "2025-02-20",
+    "priority": "medium",
+    "place": null,
+    "person": "Assistant Zhou"
+  },
+  {
+    "title": "Design Department Deliverables",
+    "task": "Provide complete appearance models and product renderings for social media materials.",
+    "completion_time": "2025-01-31",
+    "priority": "high",
+    "place": null,
+    "person": "Li (Designer)"
+  },
+  {
+    "title": "Product Launch Event",
+    "task": "Organize an online and offline launch event at the company's flagship experience store, inviting media and tech experts to introduce the product's innovative features and use scenarios.",
+    "completion_time": "2025-03-10",
+    "priority": "high",
+    "place": "Company's flagship experience store",
+    "person": "Marketing team, Assistant Zhou"
+  },
+  {
+    "title": "Product Demo Video",
+    "task": "Complete the filming and editing of the product feature demonstration video as the core visual content for the launch event.",
+    "completion_time": "2025-02-25",
+    "priority": "high",
+    "place": null,
+    "person": "R&D and Marketing visual design team"
+  },
+  {
+    "title": "Digital Advertising Campaign",
+    "task": "Launch the first wave of digital advertising targeting tech enthusiasts and health-conscious lifestyle groups aged 25-45.",
+    "completion_time": "2025-03-15",
+    "priority": "medium",
+    "place": null,
+    "person": null
+  },
+  {
+    "title": "Joint Branding Activity",
+    "task": "Initiate a joint branding event with a well-known sports brand to launch a limited edition co-branded headphone.",
+    "completion_time": "2025-04-01",
+    "priority": "medium",
+    "place": null,
+    "person": "Marketing Director Wang, Analyst Liu"
+  },
+  {
+    "title": "Consumer Emotional Connection Video",
+    "task": "Complete three different scenario advertisement videos showcasing the headphone's value in daily life, sports, and work scenarios.",
+    "completion_time": "2025-03-31",
+    "priority": "medium",
+    "place": null,
+    "person": "Analyst Liu"
+  },
+  {
+    "title": "First Round of Internal Testing",
+    "task": "Complete the first round of internal testing by inviting employees and internal partners to experience the product and provide feedback.",
+    "completion_time": "2025-02-05",
+    "priority": "medium",
+    "place": null,
+    "person": null
+  },
+  {
+    "title": "Market Testing",
+    "task": "Launch small-scale market testing to collect feedback from at least 300 users and make adjustments based on feedback.",
+    "completion_time": "2025-03-05",
+    "priority": "medium",
+    "place": null,
+    "person": "Assistant Zhou"
+  }
+]
