@@ -112,8 +112,8 @@ if __name__ == "__main__":
     md_files = list_md_files(root_path, rag_cache['file'])
     vector_store = load_vector_store(embeddings, root_path)
     
-    vector_store, rag_cache = embed_documents(vector_store, md_files, rag_cache, root_path)
-    results = search_documents(vector_store, "What is multi-agent system?")
+    # vector_store, rag_cache = embed_documents(vector_store, md_files, rag_cache, root_path)
+    results = search_documents(vector_store, "What is multi-agent system?", target=['paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md', 'paper/Massive Text Embedding Benchmark.md'])
     for result in results:
         print(result.metadata)
         print(result.page_content)
