@@ -73,7 +73,8 @@ with gr.Blocks() as demo:
                 def generate_summary(selected_files):
                     return summarize_file(todo_agent.root_path, selected_files)
                 def generate_tags(selected_files):
-                    return tag_file(todo_agent.root_path, selected_files, rewrite=True)
+                    new_tags = tag_file(todo_agent.root_path, selected_files, rewrite=True)
+                    return gr.Dropdown(list_all_tags(todo_agent.root_path), value=new_tags, multiselect=True, interactive=False, label="Tags")
                     
                 summary_dropdown = gr.Dropdown(files, value=[], multiselect=False, interactive=True, label="Select a file to overview")
                 summary_textfield = gr.Textbox("", label="Summary")

@@ -1,15 +1,15 @@
 ---
 tags:
-  - future directions
-  - benchmark tasks
-  - retrieval tasks
-  - embedding models
-  - multilingual models
-  - open-source leaderboard
-  - classification tasks
   - model performance
+  - benchmarking methodologies
+  - embedding strengths
+  - embedding models
+  - task diversity
+  - evaluation metrics
+  - multilingual evaluation
   - text embedding evaluation
-  - semantic textual similarity
+  - real-world applications
+  - benchmark tasks
 ---
 #### **1. Overview**
 

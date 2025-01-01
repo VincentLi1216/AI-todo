@@ -2,12 +2,8 @@ import os
 import json
 from llm import OpenAILLM
 from pydantic import BaseModel, Field
-import hashlib
 
-def get_hash(input_string: str, algorithm: str = 'sha256') -> str:
-    hash_object = hashlib.new(algorithm)
-    hash_object.update(input_string.encode('utf-8'))
-    return hash_object.hexdigest()
+from common import get_hash, list_md_files
 
 llm = OpenAILLM()
 
@@ -41,7 +37,7 @@ class SummarizeResponse(BaseModel):
 llm.build(template=template, schema=SummarizeResponse)
 
 
-def summarize(file_path: str) -> str:
+def _summarize(file_path: str) -> str:
     """
     Generate a concise summary based on the provided document content.
     
@@ -58,24 +54,6 @@ def summarize(file_path: str) -> str:
     return response.text
 
 
-def list_md_files(directory):
-    """
-    List all the Markdown files in the provided directory and its subdirectories.
-    
-    :param directory: The directory to search for Markdown files.
-    :return: A list of dictionaries containing the absolute and relative paths of the Markdown files.
-    """
-    md_files = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith('.md'):
-                md_files.append({
-                    "absolute_path": os.path.join(root, file),
-                    "relative_path": os.path.relpath(os.path.join(root, file), directory)
-                })
-    return md_files
-
-
 def summarize_file(root_path, file_path):
     """
     Generate a concise summary based on the provided document content.
@@ -84,7 +62,7 @@ def summarize_file(root_path, file_path):
     :param file_path: The relative path of the Markdown file to summarize.
     :return: The summarized text.
     """
-    summary = summarize(os.path.join(root_path, file_path))
+    summary = _summarize(os.path.join(root_path, file_path))
     
     with open(os.path.join(root_path, '.mindflow', 'summary.json'), 'r') as f:
         summaries = json.load(f)
@@ -119,7 +97,7 @@ def batch_summarize(root_path):
     md_files = list_md_files(root_path)
     
     for file_path in md_files:
-        text = summarize(file_path['absolute_path'])
+        text = _summarize(file_path['absolute_path'])
         summaries['data'][get_hash(file_path['relative_path'])] = {
                 'path': file_path['relative_path'],
                 'text': text
@@ -135,4 +113,4 @@ if __name__ == "__main__":
     root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
     file_path = "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md"
     
-    print(summarize(root_path, file_path))
+    print(_summarize(root_path, file_path))
