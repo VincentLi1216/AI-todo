@@ -64,6 +64,49 @@ def create_things_todo(title=None, titles=None, notes=None, when=None, tags=None
     url = base_url + query_string
     execute_url(url)
 
+def create_things_project(title=None, notes=None, when=None, deadline=None, tags=None, area=None, area_id=None, 
+                          todos=None, completed=False, canceled=False, reveal=False, creation_date=None, 
+                          completion_date=None):
+    base_url = "things:///add-project?"
+    params = {}
+
+    # Handling parameters
+    if title:
+        params['title'] = urllib.parse.quote(title)
+    if notes:
+        params['notes'] = urllib.parse.quote(notes)
+    if when:
+        params['when'] = urllib.parse.quote(when)
+    if deadline:
+        params['deadline'] = urllib.parse.quote(deadline)
+    if tags:
+        params['tags'] = urllib.parse.quote(tags)
+    if area_id:
+        params['area-id'] = area_id
+    elif area:
+        params['area'] = urllib.parse.quote(area)
+    if todos:
+        params['to-dos'] = urllib.parse.quote("%0a".join(todos))
+    if completed:
+        params['completed'] = 'true'
+    if canceled:
+        params['canceled'] = 'true'
+    if reveal:
+        params['reveal'] = 'true'
+    if creation_date:
+        params['creation-date'] = creation_date
+    if completion_date:
+        params['completion-date'] = completion_date
+
+    # Construct the URL
+    query_string = "&".join([f"{key}={value}" for key, value in params.items()])
+    url = base_url + query_string
+
+    # Print the URL for execution (replace with actual execution if needed)
+    # print("Generated URL:", url)
+    execute_url(url)  # Uncomment this line if you have a function to execute the URL
+
 if __name__ == "__main__":
-    create_things_todo(title="Book flights", notes="Check various airlines.", when="tomorrow")
+    # create_things_todo(title="Book flights", notes="Check various airlines.", when="tomorrow")
+    create_things_project(title="Plan Vacation", notes="Decide on destination and book accommodations.", when="today", deadline="next month", tags="vacation")
 
