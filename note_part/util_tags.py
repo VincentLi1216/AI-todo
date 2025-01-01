@@ -6,6 +6,8 @@ from llm import OpenAILLM
 from pydantic import BaseModel, Field
 import hashlib
 
+from common import list_md_files
+
 llm = OpenAILLM()
 
 hypothesis_template = "This text is about {}"
@@ -25,7 +27,7 @@ Here are the existing tags: {tags}.
 2. Based on the analysis, brainstorm potential tags that capture these key ideas.
 3. Cross-check each potential tag against the list of existing tags and eliminate duplicates.
 4. Rank the potential tags by their relevance to the document content.
-5. Select the top 5 to 10 relevant tags.
+5. Select the top 0 to 8 relevant tags.
 6. Ensure that each tag is concise, consisting of no more than 3 words.
 
 # Notes
@@ -38,7 +40,10 @@ Here are the existing tags: {tags}.
 """
 
 class RelativeTag(BaseModel):
-    tags: list[str] = Field(..., description="List of tags generated based on the content of the document.")
+    tags: list[str] = Field(
+        ...,
+        description="List of tags generated based on the content of the document.",
+    )
     
 llm.build(template=template, schema=RelativeTag)
 
@@ -67,7 +72,7 @@ def classify_text(text: str, classes: list) -> dict:
     return response.tags
 
 
-def pick_existing_classes(text: str, classes_verbalized: list) -> list:
+def pick_existing_classes(text: str, classes_verbalized: list, target_score: float = 0.88, limit: int = 6) -> list:
     """
     Pick the classes that are most likely to be present in the text.
     
@@ -77,11 +82,19 @@ def pick_existing_classes(text: str, classes_verbalized: list) -> list:
     """
     if len(classes_verbalized) == 0:
         return []
-    output = zeroshot_classifier(text, classes_verbalized, hypothesis_template=hypothesis_template, multi_label=False)
-    return output["labels"]
+    output = zeroshot_classifier(text, classes_verbalized, hypothesis_template=hypothesis_template, multi_label=True)
+    # print(output)
+    result = []
+    for i, score in enumerate(output["scores"]):
+        if score > target_score:
+            result.append(output["labels"][i])
+        if len(result) == limit:
+            break
+            
+    return result 
 
 
-def tag(root_path, file_path):
+def tag(root_path, file_path, rewrite=False):
     """
     Tag the specified Markdown file with relevant classes based on its content.
     
@@ -100,12 +113,14 @@ def tag(root_path, file_path):
     
     if file_path not in tags['file']:
         tags['file'].append(file_path)
+    elif not rewrite:
+        return "File already tagged."
     
     content = open(os.path.join(root_path, file_path), 'r').read()
     content = tag_template_matching(content, True)[1]
     
     labels = pick_existing_classes(content, tags['tags'])
-    results = classify_text(content, labels)
+    results = classify_text(content, labels)[:10-len(labels)]
     labels = list(set(results + labels))
     
     tag_template = """---\ntags:\n{tags}---"""
@@ -131,10 +146,55 @@ def tag(root_path, file_path):
     with open(os.path.join(root_path, '.mindflow', 'tags.json'), 'w') as f:
         f.write(json.dumps(tags))
     
-    return "Tagging process completed successfully."
+    return labels
+
+
+def batch_tag(root_path):
+    """
+    Batch process all the Markdown files in the provided directory and tag each file with relevant classes based on its content.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :return: A message indicating the completion of the tagging process.
+    """
+    md_files = list_md_files(root_path)
+    
+    for file_path in md_files:
+        print(file_path['relative_path'])
+        tag(root_path, file_path['relative_path'], rewrite=True)
+        
+    return "Batch tagging process completed successfully."
+
+def get_file_name_by_tag(root_path, description):
+    """
+    Get the list of files that are tagged with the specified tag.
+    
+    :param root_path: The root directory containing the Markdown files.
+    :param tag_name: The name of the tag to search for.
+    :return: A list of files tagged with the specified tag.
+    """
+    with open(os.path.join(root_path, '.mindflow', 'tags.json'), 'r') as f:
+        tags = json.load(f)
+        
+    related_tags = pick_existing_classes(description, tags['tags'], target_score=0.7, limit=100)
+    print(related_tags)
+    tag_to_files = {}
+    for entry in tags['data'].values():
+        file_name = entry["file"]
+        for tag in entry["tags"]:
+            if tag not in tag_to_files:
+                tag_to_files[tag] = []
+            tag_to_files[tag].append(file_name)
+    
+    result = []
+    for tag in related_tags:
+        if tag in tag_to_files:
+            result.extend(tag_to_files[tag])
+    
+    return list(set(result))
 
 if __name__ == "__main__":
     root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
     file_path = "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md"
-    
-    print(tag(root_path, file_path))
+    # print(batch_tag(root_path))
+    # print(tag(root_path, file_path, rewrite=True))
+    print(get_file_name_by_tag(root_path, "This is a survey of progress and challenges in large language models."))
