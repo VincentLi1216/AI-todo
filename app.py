@@ -8,7 +8,12 @@ from note_part.common import list_md_files, get_summary, get_tags, list_all_tags
 from note_part.util_sumarization import summarize_file
 from note_part.util_tags import tag as tag_file
 
-todo_agent = ChatAgent(root_path="/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote")
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+todo_agent = ChatAgent(root_path=os.getenv("ROOT_PATH"))
 
 files = []
 for file in list_md_files(todo_agent.root_path):
@@ -83,7 +88,11 @@ with gr.Blocks() as demo:
                                     ChatMessage(role="assistant",
                                     content=f"{used_tools[tool_key]}",
                                     metadata={"title": f'🎯 Used tool "{tool_key}"'}))
-                                
+                            elif tool_key == "create_project_from_meeting":
+                                chat_history.append(
+                                    ChatMessage(role="assistant",
+                                    content=f"{used_tools[tool_key]}",
+                                    metadata={"title": f'🎯 Used tool "{tool_key}"'})) 
                             elif tool_key == "Get_related_notes_by_tags":
                                 files_dropdown = used_tools[tool_key]['sources']
                                 chat_history.append(
