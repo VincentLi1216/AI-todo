@@ -193,11 +193,3 @@ def get_file_name_by_tag(root_path, description):
             result.extend(tag_to_files[tag])
     
     return list(set(result))
-
-
-if __name__ == "__main__":
-    root_path = "/Users/USER/Desktop/Side_project/MindFlow-AI/note_part/data/TestingNote"
-    file_path = "paper/Large Language Model based Multi-Agents- A Survey of Progress and Challenges.md"
-    # print(batch_tag(root_path))
-    # print(tag(root_path, file_path, rewrite=True))
-    print(get_file_name_by_tag(root_path, "This is a survey of progress and challenges in large language models."))
