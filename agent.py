@@ -11,8 +11,10 @@ import ast
 import time
 import datetime
 
+from note_part.common import get_summary
 from note_part.util_tags import get_file_name_by_tag
 from note_part.util_create_rag import search_documents, load_vector_store
+from note_part.util_meeting_todo import extract_todos
 
 from todo_part.util_update_db import create_things_todo, create_things_project
 from todo_part.util_read_db import get_things_projects_names
@@ -267,20 +269,25 @@ Begin!'''
         return f'New Project Created: "{title}"'
     
     def create_project_from_meeting(self, *args, **kwargs):
-        project_title = "第一次行銷策略討論-會議記錄"
+        project_titles = []
+        for file_path in self.selected_files:
+            project_title = file_path.split(".")[0]
+            summary = get_summary(self.root_path, file_path)
+            self.create_project(title=project_title, notes=summary)
 
-        self.create_project(title=project_title, notes="在 2024 年 12 月 22 日的會議中，討論了新型科技產品 \"智感耳機 SenseHear\" 的開發進度。SenseHear 結合 AI 及多功能感測技術，旨在提供智慧音頻體驗。會議回顧了上次的進展，包括市場調研初稿和競品分析初步結果。設計師提出了交互設計模型，計劃在年底前完成第三次迭代草圖。技術上，已整合感測模組與降噪技術，目標在 2025 年 2 月 10 日完成原型機技術驗證。行銷策略聚焦健康生活，品牌形象將於 2025 年 2 月中推出首波宣傳。下一步包括完成原型設計、焦點小組調查及專利申請。團隊確認每兩周檢討進度，以確保 SenseHear 的如期推出和成功。")
+            meeting_todo_list = []
+            todos = extract_todos(os.path.join(self.root_path, file_path))
+            for todo in todos:
+                meeting_todo_list.append(todo.__dict__)
 
-        # open json to dict
-        with open("note_part/todo_item_list.template.json", "r") as f:
-            meeting_todo_list = json.load(f)
+            for todo in meeting_todo_list:
+                self.create_todo(
+                    title=todo["title"], project_title=project_title, notes=todo["task"], show_quick_entry=False, sleep_time=1, reveal=True
+                )
+            
+            project_titles.append(project_title)
 
-        for todo in meeting_todo_list:
-            self.create_todo(
-                title=todo["title"], project_title=project_title, notes=todo["task"], show_quick_entry=False, sleep_time=1, reveal=True
-            )
-
-        return f"""New Project Created: "{project_title}" and todos created from the meeting record"""
+        return f"""New Projects Created: "{project_titles}" and todos created from the meeting record"""
 
     def chat(self, user_input):
         # Invoke the agent with the user input
